@@ -1,0 +1,22 @@
+{
+  "name": "otto",
+  "version": "1.0.0",
+  "description": "Discord Bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aleochoam/Otto.git"
+  },
+  "author": "Aleochoam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aleochoam/Otto/issues"
+  },
+  "homepage": "https://github.com/aleochoam/Otto#readme",
+  "dependencies": {
+    "discord.js": "^11.0.0"
+  }
+}
