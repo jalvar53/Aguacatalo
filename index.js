@@ -1,10 +1,27 @@
-const Discord = require("discord.js");
-const bot = new Discord.Client()
+const commando = require ('discord.js-commando');
 
-bot.on('message', (message) => {
-    if (message == "ping") {
-        // message.reply('pong')
-        message.channel.sendMessage("pong")
+const bot = new commando.Client();
+
+bot.registry.registerGroups([
+    ['random', "Random"],
+    ['music', "KongoYT"]
+    ]);
+bot.registry.registerDefaults();
+bot.registry.registerCommandsIn(__dirname + "/commands")
+
+bot.on('ready', () => {
+  console.log('Kongo Master is ready!');
+});
+
+bot.on('message', message => {
+    const username = message.author.username
+
+    console.log("LOG: Mensaje recibido de " + message.author.username)
+    if (username !== 'aleochoam' &&
+        username !== 'Otto' &&
+        message.channel.name == "pruebas") {
+        
+        message.channel.sendMessage("Shhhhh " + username + ", estoy en pruebas");
     }
 });
 
