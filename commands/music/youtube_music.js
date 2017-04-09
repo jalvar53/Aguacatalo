@@ -1,25 +1,27 @@
 const commando = require("discord.js-commando");
+const ytdl = require('ytdl-core');
 
 class YouTubePlayer extends commando.Command {
     constructor(client){
         super(client, {
-            name: 'kongoyt',
+            name: 'zumbe',
             group: 'music',
-            memberName: 'kongoyt',
+            memberName: 'zumbe',
             description: "reproduce tu tema de youtube"
         });
     }
 
     async run(message, args){
-        message.member.voiceChannel.join((error, connection) => {
-            if (error) {
-                message.reply("No me pude conectar: " + error)
-            } else {
-                message.reply("Aca estoy: "+ connection)
-            }
-            
+        const streamOptions = { seek: 0, volume: 1 };
+
+        message.member.voiceChannel.join().then(connection => {
+            const stream = ytdl(args,
+                {filter : 'audioonly'});
+
+            const dispatcher = connection.playStream(stream, streamOptions);
         })
     }
 }
 
 module.exports = YouTubePlayer;
+
