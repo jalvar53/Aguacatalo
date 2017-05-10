@@ -4,7 +4,8 @@ const bot = new commando.Client();
 
 bot.registry.registerGroups([
     ['random', "Random"],
-    ['music', "Zumbe"]
+    ['music', "Zumbe"],
+    ['util', "Abrase"]
     ]);
 bot.registry.registerDefaults();
 bot.registry.registerCommandsIn(__dirname + "/commands")
@@ -13,35 +14,43 @@ bot.on('ready', () => {
   console.log('Kongo Master is ready!');
 });
 
-bot.on('message', message => {
-    const username = message.author.username
+try{
+    bot.on('message', message => {
+        const username = message.author.username
 
-    console.log("LOG: Mensaje recibido de " + message.author.username)
-    if (username !== 'aleochoam' &&
-        username !== 'Otto' &&
-        message.channel.name == "pruebas") {
-        
-        message.channel.sendMessage("Shhhhh " + username + ", estoy en pruebas");
-    }
-});
+        console.log("LOG: Mensaje recibido de " + message.author.username)
+        if (username == "Dyno") {
+            var myArray = ["Shhhhh Dyno", "Por que no me usan a mi :(", "Yo tambien puedo", "A el Dyno nana"]
+            var rand = myArray[Math.floor(Math.random() * myArray.length)];
+            message.channel.sendMessage(rand);
+        }
+    });
 
-bot.on('voiceStateUpdate', (oldUser, newUser) => {
-  var user = newUser.user
-  var vChannel = newUser.voiceChannel
+    bot.on('voiceStateUpdate', (oldUser, newUser) => {
+        var username = newUser.user.username.toLowerCase()
+        var vChannel = newUser.voiceChannel
 
-  if (user.username == "aleochoam") {
-      if (oldUser.voiceChannel) {
-        oldUser.voiceChannel.leave()
-      }
       
-      if (newUser.voiceChannel.name) {
-          // user.send("Hola " + user.username + " bienvenido al canal " + newUser.voiceChannel.name);
-          vChannel.join().then(connection => {
-            const dispatcher = connection.playFile("media/admin.mp3")
-          })
-          vChannel.leave()
-      }
-  }
-});
+        if (oldUser.voiceChannel) {
+          oldUser.voiceChannel.leave()
+        }
 
-bot.login('Mjk5NzU5ODU1NTg0MTQ5NTA0.C8ip3Q.VQQPa9JsuABmx2-bA4UL6DPaTjA')
+        if (vChannel) {
+            vChannel.join().then(connection => {
+              if (username== "aleochoam") {
+                const dispatcher = connection.playFile("media/admin.mp3")
+              }else if (username == "eniqk") {
+                const dispatcher = connection.playFile("media/healing.mp3")
+              }else if (username == "segov") {
+                const dispatcher = connection.playFile("media/cena.mp3")
+              }
+            })
+            vChannel.leave()
+        }
+    });
+
+    bot.login('Mjk5NzU5ODU1NTg0MTQ5NTA0.C8ip3Q.VQQPa9JsuABmx2-bA4UL6DPaTjA')
+
+}catch(err){
+    console.log(err)
+}
