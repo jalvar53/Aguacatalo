@@ -14,6 +14,7 @@ class YouTubePlayer extends commando.Command {
             description: "reproduce tu tema de youtube"
         });
     }
+    
 
     async run(message, args){
         const streamOptions = { seek: 0, volume: 1 };
@@ -27,18 +28,20 @@ class YouTubePlayer extends commando.Command {
                     {filter : 'audioonly'});
                 const dispatcher = connection.playStream(stream, streamOptions);
             }else{
-                console.log("ELSE")
-                var video = videoSearch(args)
-                console.log(video)
+                YTSearch({key: API_KEY, term: args}, (videos) => {
+                     const stream = ytdl('https://www.youtube.com/watch?v='+videos[0].id.videoId,
+                        {filter : 'audioonly'});
+                     const dispatcher = connection.playStream(stream, streamOptions);
+                });
             }
         })
     }
 
-    videoSearch(term){
-        YTSearch({key: API_KEY, term: term}, (videos) => {
-            return videos[0]
-        })
-    }
 }
+
+function videoSearch(term){
+    
+    console.log(id)
+};
 
 module.exports = YouTubePlayer;
