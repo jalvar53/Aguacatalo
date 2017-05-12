@@ -19,8 +19,8 @@ try{
         const username = message.author.username
 
         if (username == "Dyno") {
-            var myArray = ["Shhhhh Dyno", "Por que no me usan a mi :(", "Yo tambien puedo", "A el Dyno nana", "Severo punchispum"]
-            var rand = myArray[Math.floor(Math.random() * myArray.length)];
+            var opciones = ["Shhhhh Dyno", "Por que no me usan a mi :(", "Yo tambien puedo", "A el Dyno nana", "Severo punchispum"]
+            var rand = opciones[Math.floor(Math.random() * opciones.length)];
             message.channel.sendMessage(rand);
         }
     });
@@ -30,24 +30,30 @@ try{
         var vChannel = newUser.voiceChannel
 
       
-        if (oldUser.voiceChannel) {
+        if (oldUser.voiceChannel && vChannel != undefined) {
           oldUser.voiceChannel.leave()
         }
 
-        if (vChannel) {
+        console.log(vChannel)
+        if (vChannel != undefined) {
             vChannel.join().then(connection => {
               if (username== "aleochoam") {
-                // const dispatcher = connection.playFile("media/admin.mp3")
+                const dispatcher = connection.playFile("media/admin.mp3")
               }else if (username == "eniqk") {
                 const dispatcher = connection.playFile("media/healing.mp3")
               }else if (username == "segov") {
-                const dispatcher = connection.playFile("media/sabor.mp3")
+                var opciones = ["cena.mp3", "sabor.mp3"]
+                const dispatcher = connection.playFile("media/" + getRandomItem(opciones))
               }else if (username == "david") {
-                const dispatcher = connection.playFile("media/molly.mp3")
+                var opciones = ["molly.mp3", "intro.mp3"]
+                const dispatcher = connection.playFile("media/" + getRandomItem(opciones))
               }else if (username == "mornin") {
-                const dispatcher = connection.playFile("media/phoneDown.mp3")
+                var opciones = ["ñengo.mp3", "phoneDown.mp3", "metralleta.mp3", "ronco.mp3"]
+                const dispatcher = connection.playFile("media/" + getRandomItem(opciones))
               }else if (username == "chumbi") {
                 const dispatcher = connection.playFile("media/chico.mp3")
+              }else if (username == "havoc_42") {
+                const dispatcher = connection.playFile("media/rko.mp3")
               }
             })
             vChannel.leave()
@@ -58,4 +64,8 @@ try{
 
 }catch(err){
     console.log(err)
+}
+
+function getRandomItem(list) {
+    return list[Math.floor(Math.random()*list.length)];
 }
