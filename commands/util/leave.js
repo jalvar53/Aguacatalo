@@ -11,6 +11,7 @@ class AbriseCommand extends commando.Command {
     }
 
     async run(message, args){
+        message.channel.sendMessage("mmmmmmmmmmme abro")
         message.member.voiceChannel.leave()
     }
 }

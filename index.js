@@ -1,10 +1,10 @@
-const commando = require ('discord.js-commando');
+﻿const commando = require ('discord.js-commando');
 
 const bot = new commando.Client();
 
 bot.registry.registerGroups([
     ['random', "Random"],
-    ['music', "Zumbe"],
+    ['music', "Add"],
     ['util', "Abrase"]
     ]);
 bot.registry.registerDefaults();
@@ -16,6 +16,9 @@ bot.on('ready', () => {
 
 try{
     bot.on('message', message => {
+        //if (message.content.startsWith("?add") {
+        //  message.channel.sendMessage("?stop")
+        //}
         const username = message.author.username
 
         if (username == "Dyno") {
@@ -30,20 +33,18 @@ try{
         var vChannel = newUser.voiceChannel
 
       
-        if (oldUser.voiceChannel && vChannel != undefined) {
+        if (oldUser.voiceChannel) {
           oldUser.voiceChannel.leave()
         }
 
-        console.log(vChannel)
-        if (vChannel != undefined) {
+        if (vChannel != undefined && oldUser.voiceChannel != vChannel) {
             vChannel.join().then(connection => {
               if (username== "aleochoam") {
-                const dispatcher = connection.playFile("media/admin.mp3")
+                const dispatcher = connection.playFile("media/sura.mp3")
               }else if (username == "eniqk") {
                 const dispatcher = connection.playFile("media/healing.mp3")
               }else if (username == "segov") {
-                var opciones = ["cena.mp3", "sabor.mp3"]
-                const dispatcher = connection.playFile("media/" + getRandomItem(opciones))
+                const dispatcher = connection.playFile("media/sabor.mp3")
               }else if (username == "david") {
                 var opciones = ["molly.mp3", "intro.mp3"]
                 const dispatcher = connection.playFile("media/" + getRandomItem(opciones))
@@ -53,7 +54,10 @@ try{
               }else if (username == "chumbi") {
                 const dispatcher = connection.playFile("media/chico.mp3")
               }else if (username == "havoc_42") {
-                const dispatcher = connection.playFile("media/rko.mp3")
+                var opciones = ["cena.mp3", "rko.mp3"]
+                const dispatcher = connection.playFile("media/" + getRandomItem(opciones))
+              }else if (username == "padrinolopez") {
+                const dispatcher = connection.playFile("media/gay.mp3")
               }
             })
             vChannel.leave()
