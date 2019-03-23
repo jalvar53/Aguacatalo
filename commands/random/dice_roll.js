@@ -10,9 +10,9 @@ class DiceRollCommand extends commando.Command {
     });
   }
 
-  async run(message, args) {
-    console.log('Hola', args);
-    message.member.voiceChannel.leave();
+  async run(message) {
+    const number = Math.floor((Math.random() * 6) + 1);
+    message.channel.send('Your number is: ' + number);
   }
 }
 

@@ -10,10 +10,10 @@ const bot = new commando.Client({
 bot.registry.registerGroups([
   ['random', 'Random'],
   ['music', 'Add'],
-  ['util', 'Abrase'],
+  ['util', 'Leave'],
 ]);
 
-bot.registry.registerDefaults();
+// bot.registry.registerDefaults();
 bot.registry.registerCommandsIn(__dirname + '/commands');
 
 bot.on('ready', () => {
@@ -24,10 +24,10 @@ bot.on('error', (ex) => {
   console.error('ERROR ' + ex);
 });
 
-bot.on('message', message => {
-// const username = message.author.usernam e
-  console.log(message.content);
-});
+// bot.on('message', message => {
+// // const username = message.author.usernam e
+//   console.log(message.content);
+// });
 
 bot.on('voiceStateUpdate', (oldUser, newUser) => {
   console.log(oldUser, newUser);
