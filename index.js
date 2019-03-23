@@ -1,9 +1,9 @@
-﻿const config = require('./config');
+﻿require('dotenv').config();
 const commando = require ('discord.js-commando');
 
 const bot = new commando.Client({
   commandPrefix: 'oe ',
-  owner: '199728217869778945',
+  owner: process.env.OWNER_ID,
 });
 
 
@@ -66,7 +66,7 @@ bot.on('voiceStateUpdate', (oldUser, newUser) => {
   // }
 });
 
-bot.login(config.token);
+bot.login(process.env.DISCORD_TOKEN);
 
 // function getRandomItem(list) {
 //   return list[Math.floor(Math.random() * list.length)];
