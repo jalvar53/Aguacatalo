@@ -1,75 +1,88 @@
-﻿const commando = require ('discord.js-commando');
+﻿require('dotenv').config();
+const commando = require ('discord.js-commando');
 
-const bot = new commando.Client();
+const bot = new commando.Client({
+  commandPrefix: 'oe ',
+  owner: process.env.OWNER_ID,
+});
+
 
 bot.registry.registerGroups([
-    ['random', "Random"],
-    ['music', "Add"],
-    ['util', "Abrase"]
-    ]);
-bot.registry.registerDefaults();
-bot.registry.registerCommandsIn(__dirname + "/commands")
+  ['random', 'Random'],
+  ['music', 'Add'],
+  ['util', 'Leave'],
+]);
+
+bot.registry.registerCommandsIn(__dirname + '/commands')
+  .registerDefaults();
 
 bot.on('ready', () => {
   console.log('Kongo Master is ready!');
 });
 
-try{
-    bot.on('message', message => {
-        //if (message.content.startsWith("?add") {
-        //  message.channel.sendMessage("?stop")
-        //}
-        const username = message.author.username
+bot.on('error', (ex) => {
+  console.error('ERROR ' + ex);
+});
 
-        if (username == "Dyno") {
-            var opciones = ["Shhhhh Dyno", "Por que no me usan a mi :(", "Yo tambien puedo", "A el Dyno nana", "Severo punchispum"]
-            var rand = opciones[Math.floor(Math.random() * opciones.length)];
-            message.channel.sendMessage(rand);
+bot.on('message', message => {
+  const username = message.author.username;
+  const content = message.content;
+
+  if(!content.startsWith(bot.commandPrefix)) return;
+
+  console.log('Message from: ' + username);
+  console.log('Content: ' + message.content);
+});
+
+bot.on('voiceStateUpdate', (oldUser, newUser) => {
+  if(newUser.user.username == bot.user.username) return;
+
+  const username = newUser.user.username.toLowerCase();
+  const vChannel = newUser.voiceChannel;
+
+  if (oldUser.voiceChannel) {
+    oldUser.voiceChannel.leave();
+  }
+
+  if (vChannel != undefined && oldUser.voiceChannel != vChannel) {
+    vChannel.join()
+      .then(connection => {
+        if (username == 'aleochoam') {
+          connection.playFile('media/sura.mp3');
         }
-    });
-
-    bot.on('voiceStateUpdate', (oldUser, newUser) => {
-        var username = newUser.user.username.toLowerCase()
-        var vChannel = newUser.voiceChannel
-
-      
-        if (oldUser.voiceChannel) {
-          oldUser.voiceChannel.leave()
+        else if (username == 'eniqk') {
+          connection.playFile('media/healing.mp3');
+        }
+        else if (username == 'segov') {
+          connection.playFile('media/sabor.mp3');
+        }
+        else if (username == 'david') {
+          const opciones = ['molly.mp3', 'intro.mp3'];
+          connection.playFile('media/' + getRandomItem(opciones));
+        }
+        else if (username == 'mornin') {
+          const opciones = ['ñengo.mp3', 'phoneDown.mp3', 'metralleta.mp3', 'ronco.mp3'];
+          connection.playFile('media/' + getRandomItem(opciones));
+        }
+        else if (username == 'chumbi') {
+          connection.playFile('media/chico.mp3');
+        }
+        else if (username == 'havoc_42') {
+          const opciones = ['cena.mp3', 'rko.mp3'];
+          connection.playFile('media/' + getRandomItem(opciones));
+        }
+        else if (username == 'padrinolopez') {
+          connection.playFile('media/gay.mp3');
         }
 
-        if (vChannel != undefined && oldUser.voiceChannel != vChannel) {
-            vChannel.join().then(connection => {
-              if (username== "aleochoam") {
-                const dispatcher = connection.playFile("media/sura.mp3")
-              }else if (username == "eniqk") {
-                const dispatcher = connection.playFile("media/healing.mp3")
-              }else if (username == "segov") {
-                const dispatcher = connection.playFile("media/sabor.mp3")
-              }else if (username == "david") {
-                var opciones = ["molly.mp3", "intro.mp3"]
-                const dispatcher = connection.playFile("media/" + getRandomItem(opciones))
-              }else if (username == "mornin") {
-                var opciones = ["ñengo.mp3", "phoneDown.mp3", "metralleta.mp3", "ronco.mp3"]
-                const dispatcher = connection.playFile("media/" + getRandomItem(opciones))
-              }else if (username == "chumbi") {
-                const dispatcher = connection.playFile("media/chico.mp3")
-              }else if (username == "havoc_42") {
-                var opciones = ["cena.mp3", "rko.mp3"]
-                const dispatcher = connection.playFile("media/" + getRandomItem(opciones))
-              }else if (username == "padrinolopez") {
-                const dispatcher = connection.playFile("media/gay.mp3")
-              }
-            })
-            vChannel.leave()
-        }
-    });
+        // vChannel.leave();
+      })
+      .catch(console.error);
+  }
+});
 
-    bot.login(config.token)
-
-}catch(err){
-    console.log(err)
-}
+bot.login(process.env.DISCORD_TOKEN);
 
 function getRandomItem(list) {
-    return list[Math.floor(Math.random()*list.length)];
+  return list[Math.floor(Math.random() * list.length)];
 }
