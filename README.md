@@ -1,4 +1,2 @@
 # Otto
-Discord bot Intento1
-
-Busca hacerle ambiente al eniqk y al resto que valen mierda
+Otto is a Discord bot written in node.js, mainly to try some stuff in that language, and play around with the discord API. Also to make the Kongo a little less salty.
