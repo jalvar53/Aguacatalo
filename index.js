@@ -13,7 +13,6 @@ bot.registry.registerGroups([
   ['util', 'Leave'],
 ]);
 
-// bot.registry.registerDefaults();
 bot.registry.registerCommandsIn(__dirname + '/commands');
 
 bot.on('ready', () => {
@@ -24,10 +23,15 @@ bot.on('error', (ex) => {
   console.error('ERROR ' + ex);
 });
 
-// bot.on('message', message => {
-// // const username = message.author.usernam e
-//   console.log(message.content);
-// });
+bot.on('message', message => {
+  const username = message.author.username;
+  const content = message.content;
+
+  if(!content.startsWith(bot.commandPrefix)) return;
+
+  console.log('Message from: ' + username);
+  console.log('Content: ' + message.content);
+});
 
 bot.on('voiceStateUpdate', (oldUser, newUser) => {
   if(newUser.user.username == bot.user.username) return;
