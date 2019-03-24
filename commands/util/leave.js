@@ -11,7 +11,6 @@ class LeaveCommand extends commando.Command {
   }
 
   async run(message) {
-    message.channel.send('mmmmmmmmmmme abro');
     message.member.voiceChannel.leave();
   }
 }

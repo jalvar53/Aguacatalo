@@ -13,7 +13,8 @@ bot.registry.registerGroups([
   ['util', 'Leave'],
 ]);
 
-bot.registry.registerCommandsIn(__dirname + '/commands');
+bot.registry.registerCommandsIn(__dirname + '/commands')
+  .registerDefaults();
 
 bot.on('ready', () => {
   console.log('Kongo Master is ready!');
