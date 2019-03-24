@@ -30,44 +30,54 @@ bot.on('error', (ex) => {
 // });
 
 bot.on('voiceStateUpdate', (oldUser, newUser) => {
-  console.log(oldUser, newUser);
-  // var username = newUser.user.username.toLowerCase()
-  // var vChannel = newUser.voiceChannel
+  if(newUser.user.username == bot.user.username) return;
 
+  const username = newUser.user.username.toLowerCase();
+  const vChannel = newUser.voiceChannel;
 
-  // if (oldUser.voiceChannel) {
-  //  oldUser.voiceChannel.leave()
-  // }
+  if (oldUser.voiceChannel) {
+    oldUser.voiceChannel.leave();
+  }
 
-  // if (vChannel != undefined && oldUser.voiceChannel != vChannel) {
-  //     vChannel.join().then(connection => {
-  //       if (username== 'aleochoam') {
-  //         const dispatcher = connection.playFile('media/sura.mp3')
-  //       }else if (username == 'eniqk') {
-  //         const dispatcher = connection.playFile('media/healing.mp3')
-  //       }else if (username == 'segov') {
-  //         const dispatcher = connection.playFile('media/sabor.mp3')
-  //       }else if (username == 'david') {
-  //         var opciones = ['molly.mp3', 'intro.mp3']
-  //         const dispatcher = connection.playFile('media/' + getRandomItem(opciones))
-  //       }else if (username == 'mornin') {
-  //         var opciones = ['ñengo.mp3', 'phoneDown.mp3', 'metralleta.mp3', 'ronco.mp3']
-  //         const dispatcher = connection.playFile('media/' + getRandomItem(opciones))
-  //       }else if (username == 'chumbi') {
-  //         const dispatcher = connection.playFile('media/chico.mp3')
-  //       }else if (username == 'havoc_42') {
-  //         var opciones = ['cena.mp3', 'rko.mp3']
-  //         const dispatcher = connection.playFile('media/' + getRandomItem(opciones))
-  //       }else if (username == 'padrinolopez') {
-  //         const dispatcher = connection.playFile('media/gay.mp3')
-  //       }
-  //     })
-  //     vChannel.leave()
-  // }
+  if (vChannel != undefined && oldUser.voiceChannel != vChannel) {
+    vChannel.join()
+      .then(connection => {
+        if (username == 'aleochoam') {
+          connection.playFile('media/sura.mp3');
+        }
+        else if (username == 'eniqk') {
+          connection.playFile('media/healing.mp3');
+        }
+        else if (username == 'segov') {
+          connection.playFile('media/sabor.mp3');
+        }
+        else if (username == 'david') {
+          const opciones = ['molly.mp3', 'intro.mp3'];
+          connection.playFile('media/' + getRandomItem(opciones));
+        }
+        else if (username == 'mornin') {
+          const opciones = ['ñengo.mp3', 'phoneDown.mp3', 'metralleta.mp3', 'ronco.mp3'];
+          connection.playFile('media/' + getRandomItem(opciones));
+        }
+        else if (username == 'chumbi') {
+          connection.playFile('media/chico.mp3');
+        }
+        else if (username == 'havoc_42') {
+          const opciones = ['cena.mp3', 'rko.mp3'];
+          connection.playFile('media/' + getRandomItem(opciones));
+        }
+        else if (username == 'padrinolopez') {
+          connection.playFile('media/gay.mp3');
+        }
+
+        // vChannel.leave();
+      })
+      .catch(console.error);
+  }
 });
 
 bot.login(process.env.DISCORD_TOKEN);
 
-// function getRandomItem(list) {
-//   return list[Math.floor(Math.random() * list.length)];
-// }
+function getRandomItem(list) {
+  return list[Math.floor(Math.random() * list.length)];
+}
