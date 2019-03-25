@@ -53,7 +53,7 @@ bot.on('voiceStateUpdate', (oldUser, newUser) => {
         else if (username == 'eniqk') {
           connection.playFile('media/healing.mp3');
         }
-        else if (username == 'segov') {
+        else if (username == 'segoviano') {
           connection.playFile('media/sabor.mp3');
         }
         else if (username == 'david') {
