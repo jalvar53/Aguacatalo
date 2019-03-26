@@ -10,30 +10,32 @@ class YouTubePlayer extends commando.Command {
       memberName: 'add',
       description: 'reproduce tu tema de youtube',
     });
+    this.queue = [];
   }
 
   async run(message, args) {
     const streamOptions = { seek: 0, volume: 1 };
-
-    message.member.voiceChannel.join().then(connection => {
-      const pattern = new RegExp('(https?://)*(www.)?youtube.com/(.*)');
-      const pattern2 = new RegExp('(https*://)*(www.){0,1}youtu.be/(.*)');
-
-      if (pattern.test(args) || pattern2.test(args)) {
-        const stream = ytdl(args, { filter : 'audioonly' });
-        connection.playStream(stream, streamOptions);
-        message.channel.sendMessage('Playing: ' + args);
-      }
-      else{
-        YTSearch({ key: process.env.GOOGLE_KEY, term: args }, (videos) => {
-          const stream = ytdl('https://www.youtube.com/watch?v=' + videos[0].id.videoId,
-            { filter : 'audioonly' });
-
-          connection.playStream(stream, streamOptions);
-          message.channel.sendMessage('Playing: ' + videos[0].snippet.title);
-        });
-      }
-    });
+    const connection = await message.member.voiceChannel.join();
+    const pattern = new RegExp('(https?://)*(www.)?youtube.com/(.*)');
+    const pattern2 = new RegExp('(https*://)*(www.){0,1}youtu.be/(.*)');
+    let song;
+    let stream;
+    if (pattern.test(args) || pattern2.test(args)) {
+      stream = ytdl(args, { filter : 'audioonly' });
+      song = args;
+    }
+    else{
+      await YTSearch({ key: process.env.GOOGLE_KEY, term: args }, (videos) => {
+        stream = ytdl('https://www.youtube.com/watch?v=' + videos[0].id.videoId,
+        { filter : 'audioonly' });
+        song = videos[0].snippet.title;
+      });
+    }
+    //this.queue.push({stream, song});
+    //if(this.queue.length > 1) {
+      message.channel.sendMessage('Playing: ' + song);
+      connection.playStream(stream, streamOptions);
+    //}
   }
 }
 
