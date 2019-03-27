@@ -62,7 +62,7 @@ bot.on('voiceStateUpdate', async (oldUser, newUser) => {
     try {
       const connection = await vChannel.join();
       if(USER_NAMES[username]) {
-        connection.playFile(getRandomItem(USER_NAMES[username]));
+        // connection.playFile(getRandomItem(USER_NAMES[username]));
         // vChannel.leave();
       }
     }
