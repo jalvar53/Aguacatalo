@@ -13,11 +13,12 @@ const USER_NAMES = {
   '199728217869778945': ['media/sura.mp3'], // Aleochoam
   '157659095631921153': ['media/sabor.mp3'], // Eniqk
   '226762336747257856': ['media/healing.mp3'], // Segov
-  '135869846423339008': ['molly.mp3', 'intro.mp3'], // Ramos
-  '191754092706660352': ['ñengo.mp3', 'phoneDown.mp3', 'metralleta.mp3', 'ronco.mp3'], // Moreno
+  '135869846423339008': ['media/molly.mp3', 'media/intro.mp3'], // Ramos
+  '191754092706660352': ['media/ñengo.mp3', 'media/phoneDown.mp3', 'media/metralleta.mp3', 'media/ronco.mp3'], // Moreno
   '196011946011656192': ['media/chico.mp3'], // Chumbi
-  '241737899098374144': ['cena.mp3', 'rko.mp3'], // Havoc
+  '241737899098374144': ['media/cena.mp3', 'media/rko.mp3'], // Havoc
   '219232376067194883': ['media/gay.mp3'], // Padrino
+  '172843458598404096': ['media/dota.mp3'], // Carni
 };
 
 const bot = new commando.Client({
