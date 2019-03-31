@@ -16,7 +16,7 @@ const USER_NAMES = {
   '135869846423339008': ['media/molly.mp3', 'media/intro.mp3'], // Ramos
   '191754092706660352': ['media/ñengo.mp3', 'media/phoneDown.mp3', 'media/metralleta.mp3', 'media/ronco.mp3'], // Moreno
   '196011946011656192': ['media/chico.mp3'], // Chumbi
-  '241737899098374144': ['media/cena.mp3', 'media/rko.mp3'], // Havoc
+  '241737899098374144': ['media/cena.mp3', 'media/rko.mp3', 'media/snicker.mp3'], // Havoc
   '219232376067194883': ['media/gay.mp3'], // Padrino
   '172843458598404096': ['media/dota.mp3'], // Carni
 };
