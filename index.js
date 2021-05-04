@@ -2,14 +2,12 @@
 const commando = require ('discord.js-commando');
 
 const bot = new commando.Client({
-  commandPrefix: 'oe ',
+  commandPrefix: 'cucho ',
   owner: process.env.OWNER_ID,
 });
 
 
 bot.registry.registerGroups([
-  ['random', 'Random'],
-  ['music', 'Add'],
   ['util', 'Leave'],
 ]);
 
@@ -17,7 +15,7 @@ bot.registry.registerCommandsIn(__dirname + '/commands')
   .registerDefaults();
 
 bot.on('ready', () => {
-  console.log('Kongo Master is ready!');
+  console.log('Aguacatalo melo!');
 });
 
 bot.on('error', (ex) => {

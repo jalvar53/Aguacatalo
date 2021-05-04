@@ -3,10 +3,10 @@ const commando = require('discord.js-commando');
 class LeaveCommand extends commando.Command {
   constructor(client) {
     super(client, {
-      name: 'leave',
+      name: 'suerte',
       group: 'util',
-      memberName: 'leave',
-      description: 'Kicks Otto from voice channel',
+      memberName: 'suerte',
+      description: 'Kicks Aguacatalo from voice channel',
     });
   }
 

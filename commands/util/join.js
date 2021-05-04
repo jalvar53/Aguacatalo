@@ -3,10 +3,10 @@ const commando = require('discord.js-commando');
 class JoinCommand extends commando.Command {
   constructor(client) {
     super(client, {
-      name: 'join',
+      name: 'venga',
       group: 'util',
-      memberName: 'join',
-      description: 'Tells Otto to join voice channel',
+      memberName: 'venga',
+      description: 'Tells Aguacatalo to join voice channel',
     });
   }
 

@@ -1,30 +1,19 @@
 {
-  "name": "otto",
+  "name": "aguacatalo",
   "version": "1.0.0",
   "description": "Discord Bot",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/aleochoam/Otto.git"
+    "url": "git+https://github.com/jalvar53/Aguacatalo.git"
   },
-  "author": "Aleochoam",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/aleochoam/Otto/issues"
-  },
-  "homepage": "https://github.com/aleochoam/Otto#readme",
+  "author": "jalvar53",
   "dependencies": {
-    "discord.js": "^11.3.2",
-    "discord.js-commando": "^0.9.0",
-    "dotenv": "^7.0.0",
-    "node-opus": "^0.3.0",
-    "nodemon": "^1.18.10",
-    "npm": "^6.9.0",
-    "youtube-api-search": "0.0.5",
-    "ytdl-core": "^0.29.1"
+    "discord.js": "^12.5.3",
+    "discord.js-commando": "^0.12.3",
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.7",
+    "npm": "^7.11.2"
   },
   "devDependencies": {
     "eslint": "^5.15.3",
