@@ -81,7 +81,3 @@ bot.on('message', message => {
 // });
 
 bot.login(process.env.DISCORD_TOKEN);
-
-function getRandomItem(list) {
-  return list[Math.floor(Math.random() * list.length)];
-}
