@@ -26,6 +26,7 @@ class SpeakCommand extends commando.Command {
     const params = {
       OutputFormat: 'mp3',
       Text: message,
+      Engine: 'standard',
       VoiceId: 'Lupe',
     };
 
