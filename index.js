@@ -9,6 +9,7 @@ const bot = new commando.Client({
 
 bot.registry.registerGroups([
   ['util', 'Leave'],
+  ['tts', 'Speak'],
 ]);
 
 bot.registry.registerCommandsIn(__dirname + '/commands')
