@@ -12,7 +12,7 @@ bot.registry.registerGroups([
   ['tts', 'Speak'],
 ]);
 
-bot.registry.registerCommandsIn(__dirname + '/commands')
+bot.registry.registerCommandsIn(__dirname + '/src/commands')
   .registerDefaults();
 
 bot.on('ready', () => {
@@ -81,7 +81,3 @@ bot.on('message', message => {
 // });
 
 bot.login(process.env.DISCORD_TOKEN);
-
-function getRandomItem(list) {
-  return list[Math.floor(Math.random() * list.length)];
-}
