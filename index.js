@@ -12,7 +12,7 @@ bot.registry.registerGroups([
   ['tts', 'Speak'],
 ]);
 
-bot.registry.registerCommandsIn(__dirname + '/commands')
+bot.registry.registerCommandsIn(__dirname + '/src/commands')
   .registerDefaults();
 
 bot.on('ready', () => {
