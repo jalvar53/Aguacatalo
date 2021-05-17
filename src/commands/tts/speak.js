@@ -13,10 +13,8 @@ class SpeakCommand extends commando.Command {
   }
 
   async run(message) {
-    message.member.voice.channel.join().then(connection => {
-      console.log('por aca');
-      this.createFileFromPolly(message.argString, connection);
-    });
+    message.member.voice.channel.join()
+      .then(connection => this.createFileFromPolly(message.argString, connection));
   }
 
   createFileFromPolly(message, connection) {
@@ -31,13 +29,16 @@ class SpeakCommand extends commando.Command {
     };
 
     const synthCallback = function(err, data) {
-      if (err) console.log(err, err.stack);
-      else console.log(data);
+      if (err) {
+        console.log(err, err.stack);
+        return;
+      }
 
       fs.writeFile('output.mp3', data.AudioStream, function(err) {
         if (err) {
           console.log('An error occurred while writing the file.');
           console.log(err);
+          return;
         }
         console.log('Finished writing the file to the filesystem');
         connection.play('output.mp3', { seek: 0, volume: 1 });
