@@ -12,6 +12,9 @@ class KickCommand extends commando.Command {
   }
 
   async run(message) {
+    const approveEmoji = '👌'
+    const declineEmoji = '❌'
+
     const memberTarget = message.mentions.members.first();
     const voiceChannel = memberTarget.voice.channel
 
@@ -32,22 +35,24 @@ class KickCommand extends commando.Command {
     repVoteEmbed.setFooter(`\nIniciado por: ${message.author.username}`);
     const pollMessage = await message.channel.send(repVoteEmbed);
 
-    await pollMessage.react(`👌`);
-    await pollMessage.react('❌');
+    await pollMessage.react(approveEmoji);
+    await pollMessage.react(declineEmoji);
 
-    const filter = reaction => reaction.emoji.name === '👌' || reaction.emoji.name === '❌' // That is an x
+    const filter = reaction => {
+      return reaction.emoji.name === approveEmoji || reaction.emoji.name === declineEmoji
+    }
 
     const results = await pollMessage.awaitReactions( filter, { time: 10000 })
 
-    const approvals = results.get(`👌`).count - 1
+    const approvals = results.get(approveEmoji).count - 1
 
     if (approvals > voiceChannel.members.size / 2) {
       memberTarget.voice
         .kick()
-        .then((member) => message.channel.send(`${member} la buena`))
+        .then((member) => message.channel.send(`${member} suerte gonorrea`))
         .catch(console.error);
     } else {
-      message.channel.send(`${memberTarget} fue perdonado`);
+      message.channel.send(`${memberTarget} te salvaste puto`);
     }
   };
 }
