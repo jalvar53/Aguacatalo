@@ -11,7 +11,7 @@ class JoinCommand extends commando.Command {
   }
 
   async run(message) {
-    message.member.voiceChannel.join();
+    message.member.voice.channel.join();
   }
 }
 
