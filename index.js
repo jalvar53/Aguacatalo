@@ -2,7 +2,7 @@
 const commando = require ('discord.js-commando');
 
 const bot = new commando.Client({
-  commandPrefix: 'cucho ',
+  commandPrefix: process.env.COMMAND_PREFIX,
   owner: process.env.OWNER_ID,
 });
 
