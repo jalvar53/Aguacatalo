@@ -2,7 +2,7 @@
 const commando = require ('discord.js-commando');
 
 const bot = new commando.Client({
-  commandPrefix: 'cucho ',
+  commandPrefix: process.env.COMMAND_PREFIX,
   owner: process.env.OWNER_ID,
 });
 
@@ -17,7 +17,7 @@ bot.registry.registerCommandsIn(__dirname + '/src/commands')
   .registerDefaults();
 
 bot.on('ready', () => {
-  console.log('Aguacatalo melo!');
+  console.log(`${process.env.BOT_NAME} melo!`);
 });
 
 bot.on('error', (ex) => {
