@@ -17,7 +17,7 @@ bot.registry.registerCommandsIn(__dirname + '/src/commands')
   .registerDefaults();
 
 bot.on('ready', () => {
-  console.log('Aguacatalo melo!');
+  console.log(`${process.env.BOT_NAME} melo!`);
 });
 
 bot.on('error', (ex) => {
